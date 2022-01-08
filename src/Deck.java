@@ -31,7 +31,7 @@ public class Deck {
 			tempDeck.add(this.cards.get(randomPos));
 			this.cards.remove(randomPos);
 		}
-		this.cards = tempDeck; //shuffled  
+		this.cards = tempDeck; // shuffled  
 	}
 	
 	public String toString() {
