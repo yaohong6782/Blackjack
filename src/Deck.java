@@ -36,12 +36,27 @@ public class Deck {
 	
 	public String toString() {
 		String cardListString = "";
-		int i = 0; 
 		for (Card aCard : this.cards) {
-			cardListString += "\n" + i + " " + aCard.toString();
-			i++;
+			cardListString += "\n" + aCard.toString();
 		}
 		return cardListString;
 	}
-
+	
+	public void removeCard(int i) {
+		this.cards.remove(i);
+	}
+	
+	public Card getCard(int i) {
+		return this.cards.get(i);
+	}
+	
+	public void addCard(Card addCard) {
+		this.cards.add(addCard);
+	}
+	
+	public void draw(Deck comingFrom) {
+		this.cards.add(comingFrom.getCard(0)); // top of the deck
+		comingFrom.removeCard(0);
+	}
+	
 }
