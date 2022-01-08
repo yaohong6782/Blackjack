@@ -1,1 +1,2 @@
-# Blackjack-OOP
+# Blackjack 
+Relearning fundamentals of OOP
