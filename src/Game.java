@@ -28,6 +28,8 @@ public class Game {
 				break;
 			}
 			
+			boolean endGame = false;
+			
 			playerDeck.draw(playingDeck);
 			playerDeck.draw(playingDeck);
 			
@@ -46,16 +48,46 @@ public class Game {
 				int response = sc.nextInt();
 				if (response == 1) {
 					playerDeck.draw(playingDeck); 
-					// Last card draw in array
+					// Last card draw in array from player side
 					System.out.print("You drew : " + playerDeck.getCard(playerDeck.deckSize()-1)); 
 					
 					// bust
 					if (playerDeck.cardsValue() > 21) {
 						System.out.println("You bust! Hand value : " + playerDeck.cardsValue());
 						playerChip -= betPlace;
+						endGame = true;
+						break;
 					}
 				}
-				
+				else if (response == 2) {
+					break; // stand 
+				}
+			}
+			System.out.println("Dealer hand : " + dealerDeck.toString());
+			
+			if (dealerDeck.cardsValue() > playerDeck.cardsValue() && endGame == false) {
+				System.out.println("Dealer wins");
+				playerChip -= betPlace;
+				endGame = true;
+			}
+			
+			// dealer draws
+			while(dealerDeck.cardsValue() < 17 && endGame == false) {
+				dealerDeck.draw(playingDeck);
+				System.out.println("Dealer drew : " + dealerDeck.getCard(dealerDeck.deckSize()-1));
+			}
+			System.out.println("Dealer hand value : " + dealerDeck.cardsValue());
+			
+			//check if dealer busted
+			if (dealerDeck.cardsValue() > 21 && endGame == false) {
+				System.out.println("Dealer bust, you win");
+				playerChip += betPlace;
+				endGame = true;
+			}
+			
+			if (playerDeck.cardsValue() == dealerDeck.cardsValue() && endGame == false) {
+				System.out.println("Tied");
+				endGame = true;
 			}
 		}
 		
