@@ -40,7 +40,7 @@ public class Game {
 			
 			while(true) {
 				System.out.println("Your hand currently : ");
-				System.out.println(playerDeck.toString());
+				System.out.println(playerDeck.toString() + "\n");
 				System.out.println("Your hand current value is : " + playerDeck.cardsValue());
 				
 				System.out.println("Dealer hand : " + dealerDeck.getCard(0).toString() + " and [Unknown]");
@@ -50,7 +50,7 @@ public class Game {
 				if (response == 1) {
 					playerDeck.draw(playingDeck); 
 					// Last card draw in array from player side
-					System.out.print("You drew : " + playerDeck.getCard(playerDeck.deckSize()-1)); 
+					System.out.println("You drew : " + playerDeck.getCard(playerDeck.deckSize()-1)); 
 					
 					// bust
 					if (playerDeck.cardsValue() > 21) {
@@ -64,7 +64,7 @@ public class Game {
 					break; // stand 
 				}
 			}
-			System.out.println("Dealer hand : " + dealerDeck.toString());
+			System.out.println("Dealer hand : " + dealerDeck.toString() + "\n");
 			
 			if (dealerDeck.cardsValue() > playerDeck.cardsValue() && endGame == false) {
 				System.out.println("Dealer wins");
@@ -99,7 +99,7 @@ public class Game {
 			
 			playerDeck.restartDeck(playingDeck);
 			dealerDeck.restartDeck(playingDeck);
-			System.out.println("End of hand");
+			System.out.println("End of hand\n");
 		}
 		
 		System.out.println("Game over, no chips remaining");
