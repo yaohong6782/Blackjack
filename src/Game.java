@@ -33,10 +33,11 @@ public class Game {
 			playerDeck.draw(playingDeck);
 			playerDeck.draw(playingDeck);
 			
-			dealerDeck.draw(playerDeck);
-			dealerDeck.draw(playerDeck);
+			dealerDeck.draw(playingDeck);
+			dealerDeck.draw(playingDeck);
 			
 			System.out.println(dealerDeck.getCard(0).toString());
+			
 			while(true) {
 				System.out.println("Your hand currently : ");
 				System.out.println(playerDeck.toString());
@@ -71,7 +72,7 @@ public class Game {
 				endGame = true;
 			}
 			
-			// dealer draws
+			// dealer draws card 
 			while(dealerDeck.cardsValue() < 17 && endGame == false) {
 				dealerDeck.draw(playingDeck);
 				System.out.println("Dealer drew : " + dealerDeck.getCard(dealerDeck.deckSize()-1));
@@ -85,10 +86,20 @@ public class Game {
 				endGame = true;
 			}
 			
-			if (playerDeck.cardsValue() == dealerDeck.cardsValue() && endGame == false) {
+			else if (playerDeck.cardsValue() == dealerDeck.cardsValue() && endGame == false) {
 				System.out.println("Tied");
 				endGame = true;
 			}
+			
+			else if (playerDeck.cardsValue() > dealerDeck.cardsValue() && endGame == false) {
+				System.out.println("Player wins");
+				playerChip += betPlace;
+				endGame = true;
+			}
+			
+			playerDeck.restartDeck(playingDeck);
+			dealerDeck.restartDeck(playingDeck);
+			System.out.println("End of hand");
 		}
 		
 		System.out.println("Game over, no chips remaining");
