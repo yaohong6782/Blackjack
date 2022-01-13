@@ -79,13 +79,19 @@ public class Game {
 			}
 			System.out.println("Dealer hand value : " + dealerDeck.cardsValue());
 			
-			//check if dealer busted
+			// dealer conditions
 			if (dealerDeck.cardsValue() > 21 && endGame == false) {
 				System.out.println("Dealer bust, you win");
 				playerChip += betPlace;
 				endGame = true;
 			}
 			
+			else if (dealerDeck.cardsValue() > playerDeck.cardsValue() && endGame == false) {
+				System.out.println("Dealer wins");
+				playerChip -= betPlace;
+				endGame = true;
+			}
+			// player conditionals
 			else if (playerDeck.cardsValue() == dealerDeck.cardsValue() && endGame == false) {
 				System.out.println("Tied");
 				endGame = true;
